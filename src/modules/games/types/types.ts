@@ -1,6 +1,7 @@
 export interface GameGenre {
   id: number;
   name: string;
+  image_background?: string | null;
 }
 // export interface FetchGenreResponse {
 //   count: number;

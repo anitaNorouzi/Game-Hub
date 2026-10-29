@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getData } from "../../services/data";
 
-const useData = <T,>(endpoint: string) => {
+const useData = <T>(endpoint: string) => {
   return useQuery({
     queryKey: ["data", endpoint],
     queryFn: () => getData<T>(endpoint),

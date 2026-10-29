@@ -12,7 +12,7 @@ const HomePage = () => {
 
       <section
         aria-label="Main Wrapper"
-        className="grid grid-cols-1 lg:grid-cols-[1fr_5fr]  dark:border-neutral-700"
+        className="grid grid-cols-1 lg:grid-cols-[1fr_5fr]  dark:border-neutral-700 p-10"
       >
         <aside className="Sidebar hidden lg:block" aria-label="sidebar">
           <Sidebar />
