@@ -1,4 +1,3 @@
-import React from "react";
 import GenreList from "./GenreList";
 
 const Sidebar = () => {
