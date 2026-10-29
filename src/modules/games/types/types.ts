@@ -2,6 +2,11 @@ export interface GameGenre {
   id: number;
   name: string;
 }
+export interface FetchGenreResponse {
+  count: number;
+  results: GameGenre[];
+}
+
 export interface Platform {
   id: number;
   name: string;
