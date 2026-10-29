@@ -1,17 +1,25 @@
-import React from "react";
+// import React from "react";
 import Navbar from "../components/Navbar";
-
+import GameCards from "../components/GameCards";
+import Sidebar from "../components/Sidebar";
 const HomePage = () => {
   return (
-    <div aria-label="app" className="grid grid-rows-2 border-2 ">
-      <nav aria-label="Main navigation">
-        <Navbar />
-      </nav>
-      <section aria-label="Main Wrapper" className="grid grid-cols-2 border-4">
+    <div
+      aria-label="app"
+      className="grid min-h-screen grid-rows-[auto_1fr] bg-white text-neutral-900 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100"
+    >
+      <Navbar />
+
+      <section
+        aria-label="Main Wrapper"
+        className="grid grid-cols-1 lg:grid-cols-[1fr_5fr]  dark:border-neutral-700"
+      >
         <aside className="Sidebar hidden lg:block" aria-label="sidebar">
-          aside
+          <Sidebar />
         </aside>
-        <main className="main-content">main</main>
+        <main className="main-content">
+          <GameCards />
+        </main>
       </section>
     </div>
   );
