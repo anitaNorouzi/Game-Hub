@@ -2,18 +2,40 @@ import { useGames } from "../hooks/ReactQuery/useGames";
 import type { Game } from "../types/types";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import { Image } from "@mantine/core";
+import getCroppedImageUrl from "../../../shared/services/image-url";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 const GameCards = () => {
-  const { data, isPending, isError } = useGames();
+  const { data, isLoading, isError } = useGames();
 
-  if (isPending) return <p>Loading games...</p>;
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {/* Render 12 placeholder cards while the games are loading.
+         because the API request asks for 12 games (page_size: 12)
+         You can change the number if you change the page size.
+        */}
+
+        {Array.from({ length: 12 }, (_, index) => (
+          <GameCardSkeleton key={index} />
+        ))}
+      </div>
+    );
+  }
   if (isError) return <p>Failed to load games.</p>;
+  if (!data) return null;
+
   return (
     <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {data.results.map((game: Game) => (
         <div key={game.id} className="rounded-lg border p-4">
-          <img
-            src={game.background_image ?? undefined}
+          <Image
+            src={
+              game.background_image
+                ? getCroppedImageUrl(game.background_image)
+                : undefined
+            }
             alt={game.name}
             className="h-48 w-full rounded object-cover"
           />
