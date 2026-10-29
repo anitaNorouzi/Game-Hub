@@ -1,9 +1,19 @@
 import useGenres from "../hooks/ReactQuery/useGenres";
 import { Image } from "@mantine/core";
 import getCroppedImageUrl from "../../../shared/services/image-url";
+import { Loader } from "@mantine/core";
 
 const GenreList = () => {
-  const { data } = useGenres();
+  const { data, isLoading, error } = useGenres();
+  if (error) return null;
+  if (isLoading) {
+    return (
+      <div className="flex min-h-32 items-center justify-center">
+        <Loader color="teal" />
+      </div>
+    );
+  }
+
   return (
     <ul>
       {data?.results.map((genre) => (
