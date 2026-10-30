@@ -2,8 +2,12 @@ import useGenres from "../hooks/ReactQuery/useGenres";
 import { Image } from "@mantine/core";
 import getCroppedImageUrl from "../../../shared/services/image-url";
 import { Loader } from "@mantine/core";
+import type { GameGenre } from "../types/types";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: GameGenre) => void;
+}
+const GenreList = ({ onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   if (error) return null;
   if (isLoading) {
@@ -34,7 +38,10 @@ const GenreList = () => {
             fit="cover"
             className="shrink-0"
           />
-          <button className="min-w-0 flex-1 truncate p-0 text-left text-xs cursor-pointer">
+          <button
+            onClick={() => onSelectGenre(genre)}
+            className="min-w-0 flex-1 truncate p-0 text-left text-xs cursor-pointer"
+          >
             {genre.name}
           </button>
         </li>

@@ -1,6 +1,6 @@
 import useData from "./useData";
-import type { Game } from "../../types/types";
+import type { Game, GameGenre } from "../../types/types";
 
-export function useGames() {
-  return useData<Game>("/games");
+export function useGames(selectedGenre: GameGenre | null) {
+  return useData<Game>("/games", { params: { genres: selectedGenre?.id } });
 }

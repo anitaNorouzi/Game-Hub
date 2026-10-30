@@ -1,13 +1,16 @@
 import { useGames } from "../hooks/ReactQuery/useGames";
-import type { Game } from "../types/types";
+import type { Game, GameGenre } from "../types/types";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import { Image } from "@mantine/core";
 import getCroppedImageUrl from "../../../shared/services/image-url";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-const GameCards = () => {
-  const { data, isLoading, isError } = useGames();
+interface Props {
+  selectedGenre: GameGenre | null;
+}
+const GameCards = ({ selectedGenre }: Props) => {
+  const { data, isLoading, isError } = useGames(selectedGenre);
 
   if (isLoading) {
     return (

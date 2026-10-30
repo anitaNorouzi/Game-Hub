@@ -1,8 +1,12 @@
-// import React from "react";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import GameCards from "../components/GameCards";
 import Sidebar from "../components/Sidebar";
+import type { GameGenre } from "../types/types";
+
 const HomePage = () => {
+  const [selectedGenre, setSelectedGenre] = useState<GameGenre | null>(null);
+
   return (
     <div
       aria-label="app"
@@ -15,10 +19,10 @@ const HomePage = () => {
         className="grid grid-cols-1 p-10 dark:border-neutral-700 lg:grid-cols-[180px_minmax(0,1fr)]"
       >
         <aside className="Sidebar hidden lg:block" aria-label="sidebar">
-          <Sidebar />
+          <Sidebar onSelectGenre={setSelectedGenre} />
         </aside>
         <main className="main-content">
-          <GameCards />
+          <GameCards selectedGenre={selectedGenre} />
         </main>
       </section>
     </div>
