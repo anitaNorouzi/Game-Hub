@@ -5,13 +5,13 @@ import CriticScore from "./CriticScore";
 import { Image } from "@mantine/core";
 import getCroppedImageUrl from "../../../shared/services/image-url";
 import GameCardSkeleton from "./GameCardSkeleton";
+import type { GameQuery } from "../pages/HomePage";
 
 interface Props {
-  selectedGenre: GameGenre | null;
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 }
-const GameCards = ({ selectedGenre, selectedPlatform }: Props) => {
-  const { data, isLoading, isError } = useGames(selectedGenre, selectedPlatform);
+const GameCards = ({ gameQuery }: Props) => {
+  const { data, isLoading, isError } = useGames(gameQuery);
 
   if (isLoading) {
     return (

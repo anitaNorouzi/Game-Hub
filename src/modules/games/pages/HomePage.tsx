@@ -5,11 +5,16 @@ import Sidebar from "../components/Sidebar";
 import type { GameGenre, Platform } from "../types/types";
 import PlatformSelector from "../components/PlatformSelector";
 
+export interface GameQuery {
+  genre: GameGenre | null;
+  platform: Platform | null;
+}
+
 const HomePage = () => {
-  const [selectedGenre, setSelectedGenre] = useState<GameGenre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null,
-  );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({
+    genre: null,
+    platform: null,
+  });
 
   return (
     <div
@@ -24,19 +29,20 @@ const HomePage = () => {
       >
         <aside className="Sidebar hidden lg:block" aria-label="sidebar">
           <Sidebar
-            selectedGenre={selectedGenre}
-            onSelectGenre={setSelectedGenre}
+            selectedGenre={gameQuery.genre}
+            onSelectGenre={(genre) =>
+              setGameQuery((query) => ({ ...query, genre }))
+            }
           />
         </aside>
         <main className="main-content">
           <PlatformSelector
-            selectedPlatform={selectedPlatform}
-            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+            selectedPlatform={gameQuery.platform}
+            onSelectPlatform={(platform) =>
+              setGameQuery((query) => ({ ...query, platform }))
+            }
           />
-          <GameCards
-            selectedGenre={selectedGenre}
-            selectedPlatform={selectedPlatform}
-          />
+          <GameCards gameQuery={gameQuery} />
         </main>
       </section>
     </div>
