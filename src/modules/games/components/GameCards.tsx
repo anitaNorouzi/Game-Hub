@@ -1,5 +1,5 @@
 import { useGames } from "../hooks/ReactQuery/useGames";
-import type { Game, GameGenre, Platform } from "../types/types";
+import type { Game } from "../types/types";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import { Image } from "@mantine/core";
