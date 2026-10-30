@@ -2,11 +2,14 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import GameCards from "../components/GameCards";
 import Sidebar from "../components/Sidebar";
-import type { GameGenre } from "../types/types";
+import type { GameGenre, Platform } from "../types/types";
 import PlatformSelector from "../components/PlatformSelector";
 
 const HomePage = () => {
   const [selectedGenre, setSelectedGenre] = useState<GameGenre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null,
+  );
 
   return (
     <div
@@ -26,8 +29,14 @@ const HomePage = () => {
           />
         </aside>
         <main className="main-content">
-          <PlatformSelector />
-          <GameCards selectedGenre={selectedGenre} />
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+          />
+          <GameCards
+            selectedGenre={selectedGenre}
+            selectedPlatform={selectedPlatform}
+          />
         </main>
       </section>
     </div>

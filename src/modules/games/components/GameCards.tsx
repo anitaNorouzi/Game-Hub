@@ -1,5 +1,5 @@
 import { useGames } from "../hooks/ReactQuery/useGames";
-import type { Game, GameGenre } from "../types/types";
+import type { Game, GameGenre, Platform } from "../types/types";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import { Image } from "@mantine/core";
@@ -8,9 +8,10 @@ import GameCardSkeleton from "./GameCardSkeleton";
 
 interface Props {
   selectedGenre: GameGenre | null;
+  selectedPlatform: Platform | null;
 }
-const GameCards = ({ selectedGenre }: Props) => {
-  const { data, isLoading, isError } = useGames(selectedGenre);
+const GameCards = ({ selectedGenre, selectedPlatform }: Props) => {
+  const { data, isLoading, isError } = useGames(selectedGenre, selectedPlatform);
 
   if (isLoading) {
     return (

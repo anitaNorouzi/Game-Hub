@@ -1,7 +1,13 @@
 import { Button, Menu } from "@mantine/core";
 import { RiArrowDownWideLine } from "react-icons/ri";
 import usePlatforms from "../hooks/ReactQuery/usePlatforms";
-const PlatformSelector = () => {
+import type { Platform } from "../types/types";
+
+interface Props {
+  selectedPlatform: Platform | null;
+  onSelectPlatform: (platform: Platform) => void;
+}
+const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
   if (error) return <p>Could not load platforms.</p>;
@@ -10,13 +16,18 @@ const PlatformSelector = () => {
     <Menu radius={5} width={200} position="bottom-start">
       <Menu.Target>
         <Button radius={4} rightSection={<RiArrowDownWideLine />}>
-          Platforms
+          {selectedPlatform?.name || "Platforms"}
         </Button>
       </Menu.Target>
 
       <Menu.Dropdown>
         {data?.results.map((platform) => (
-          <Menu.Item key={platform.id}>{platform.name}</Menu.Item>
+          <Menu.Item
+            onClick={() => onSelectPlatform(platform)}
+            key={platform.id}
+          >
+            {platform.name}
+          </Menu.Item>
         ))}
       </Menu.Dropdown>
     </Menu>
