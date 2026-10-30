@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import GameCards from "../components/GameCards";
 import Sidebar from "../components/Sidebar";
 import type { GameGenre } from "../types/types";
+import PlatformSelector from "../components/PlatformSelector";
 
 const HomePage = () => {
   const [selectedGenre, setSelectedGenre] = useState<GameGenre | null>(null);
@@ -19,9 +20,13 @@ const HomePage = () => {
         className="grid grid-cols-1 p-10 dark:border-neutral-700 lg:grid-cols-[180px_minmax(0,1fr)]"
       >
         <aside className="Sidebar hidden lg:block" aria-label="sidebar">
-          <Sidebar onSelectGenre={setSelectedGenre} />
+          <Sidebar
+            selectedGenre={selectedGenre}
+            onSelectGenre={setSelectedGenre}
+          />
         </aside>
         <main className="main-content">
+          <PlatformSelector />
           <GameCards selectedGenre={selectedGenre} />
         </main>
       </section>

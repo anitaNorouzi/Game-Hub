@@ -5,9 +5,10 @@ import { Loader } from "@mantine/core";
 import type { GameGenre } from "../types/types";
 
 interface Props {
+  selectedGenre: GameGenre | null;
   onSelectGenre: (genre: GameGenre) => void;
 }
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   if (error) return null;
   if (isLoading) {
@@ -22,7 +23,22 @@ const GenreList = ({ onSelectGenre }: Props) => {
     <ul>
       {data?.results.map((genre) => (
         <li
-          className="flex h-14 cursor-pointer items-center gap-3 rounded-2xl px-2 transition-colors hover:bg-black/20 hover:text-white dark:hover:bg-white/10"
+          data-selected={selectedGenre?.id === genre.id}
+          role="button"
+          tabIndex={0}
+          aria-pressed={selectedGenre?.id === genre.id}
+          onClick={() => onSelectGenre(genre)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              onSelectGenre(genre);
+            }
+          }}
+          className="flex h-14 cursor-pointer items-center gap-3 rounded-2xl px-2 
+           hover:bg-black/20 hover:text-white dark:hover:bg-white/10
+            data-[selected=true]:text-white data-[selected=true]:bg-green-600/30
+            data-[selected=true]:hover:bg-green-600/30
+           "
           key={genre.id}
         >
           <Image
@@ -38,12 +54,7 @@ const GenreList = ({ onSelectGenre }: Props) => {
             fit="cover"
             className="shrink-0"
           />
-          <button
-            onClick={() => onSelectGenre(genre)}
-            className="min-w-0 flex-1 truncate p-0 text-left text-xs cursor-pointer"
-          >
-            {genre.name}
-          </button>
+          <span className="min-w-0 flex-1 truncate text-xs">{genre.name}</span>
         </li>
       ))}
     </ul>
