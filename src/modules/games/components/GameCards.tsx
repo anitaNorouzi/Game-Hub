@@ -3,7 +3,9 @@ import type { Game } from "../types/types";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import { Image } from "@mantine/core";
-import getCroppedImageUrl from "../../../shared/services/image-url";
+import getCroppedImageUrl, {
+  noImage,
+} from "../../../shared/services/image-url";
 import GameCardSkeleton from "./GameCardSkeleton";
 import type { GameQuery } from "../pages/HomePage";
 
@@ -35,11 +37,8 @@ const GameCards = ({ gameQuery }: Props) => {
       {data.results.map((game: Game) => (
         <div key={game.id} className="rounded-lg border p-4">
           <Image
-            src={
-              game.background_image
-                ? getCroppedImageUrl(game.background_image)
-                : undefined
-            }
+            src={getCroppedImageUrl(game.background_image)}
+            fallbackSrc={noImage}
             alt={game.name}
             h={192}
             w="100%"

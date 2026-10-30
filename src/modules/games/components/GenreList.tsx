@@ -1,6 +1,8 @@
 import useGenres from "../hooks/ReactQuery/useGenres";
 import { Image } from "@mantine/core";
-import getCroppedImageUrl from "../../../shared/services/image-url";
+import getCroppedImageUrl, {
+  noImage,
+} from "../../../shared/services/image-url";
 import { Loader } from "@mantine/core";
 import type { GameGenre } from "../types/types";
 
@@ -42,11 +44,8 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
           key={genre.id}
         >
           <Image
-            src={
-              genre.image_background
-                ? getCroppedImageUrl(genre.image_background)
-                : undefined
-            }
+            src={getCroppedImageUrl(genre.image_background)}
+            fallbackSrc={noImage}
             alt={genre.name}
             w={32}
             h={32}
