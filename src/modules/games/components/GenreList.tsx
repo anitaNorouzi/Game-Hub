@@ -18,7 +18,7 @@ const GenreList = () => {
     <ul>
       {data?.results.map((genre) => (
         <li
-          className="flex h-14 items-center gap-3 rounded-2xl px-2"
+          className="flex h-14 cursor-pointer items-center gap-3 rounded-2xl px-2 transition-colors hover:bg-black/20 hover:text-white dark:hover:bg-white/10"
           key={genre.id}
         >
           <Image
@@ -34,7 +34,9 @@ const GenreList = () => {
             fit="cover"
             className="shrink-0"
           />
-          <p className="min-w-0 flex-1 truncate">{genre.name}</p>
+          <button className="min-w-0 flex-1 truncate p-0 text-left text-xs cursor-pointer">
+            {genre.name}
+          </button>
         </li>
       ))}
     </ul>
