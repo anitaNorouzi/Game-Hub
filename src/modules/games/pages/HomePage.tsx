@@ -10,6 +10,7 @@ export interface GameQuery {
   genre: GameGenre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string;
 }
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
     genre: null,
     platform: null,
     sortOrder: "",
+    searchText: "",
   });
 
   return (
@@ -24,7 +26,11 @@ const HomePage = () => {
       aria-label="app"
       className="grid min-h-screen grid-rows-[auto_1fr] bg-white text-neutral-900 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100"
     >
-      <Navbar />
+      <Navbar
+        onSearch={(searchText) =>
+          setGameQuery((query) => ({ ...query, searchText }))
+        }
+      />
 
       <section
         aria-label="Main Wrapper"

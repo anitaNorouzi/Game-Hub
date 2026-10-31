@@ -4,8 +4,11 @@ import { Switch } from "@mantine/core";
 import type { Theme } from "../../../shared/types/theme";
 import { useLocalStorage } from "@mantine/hooks";
 import { FiSearch } from "react-icons/fi";
-
-const Navbar = () => {
+import SearchInput from "./SearchInput";
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+const Navbar = ({ onSearch }: Props) => {
   const [theme, setTheme] = useLocalStorage<Theme>({
     key: "theme",
     defaultValue: "light",
@@ -29,14 +32,7 @@ const Navbar = () => {
         className="flex flex-row items-center gap-3 px-3.5 dark:bg-white/10 dark:text-white placeholder:text-neutral-600 dark:placeholder:text-neutral-400 w-[80%] h-8 rounded-4xl text-xs"
       >
         <FiSearch />
-        <input
-          type="search"
-          id="game-search"
-          name="query"
-          placeholder="Search 90,000 Games"
-          aria-label="Search games"
-          className="w-full placeholder:text-neutral-600 dark:placeholder:text-neutral-400  text-xs"
-        />{" "}
+        <SearchInput onSearch={onSearch}></SearchInput>
       </div>
 
       <Switch
