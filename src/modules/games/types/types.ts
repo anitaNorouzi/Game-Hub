@@ -21,8 +21,8 @@ export interface Game {
   rating: number;
   genres: GameGenre[];
   parent_platforms: { platform: Platform }[];
-  metacritic: number;
-  rating_top: number;
+  metacritic?: number | null;
+  rating_top?: number | null;
 }
 
 export interface GamesResponse {

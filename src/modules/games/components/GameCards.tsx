@@ -47,9 +47,9 @@ const GameCards = ({ gameQuery }: Props) => {
             fit="cover"
           />
 
-          <div className="flex justify-between pt-5">
+          <div className="flex items-start gap-2 pt-5">
             <PlatformIconList platforms={game.parent_platforms} />
-            <CriticScore score={game.metacritic}></CriticScore>
+            <CriticScore score={game.metacritic} />
           </div>
           <h2 className="mt-2 text-lg font-bold">{game.name}</h2>
           <Emoji rating={game.rating_top}></Emoji>

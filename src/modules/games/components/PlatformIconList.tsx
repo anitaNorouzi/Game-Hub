@@ -29,7 +29,10 @@ const PlatformIconList = ({ platforms }: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-2" aria-label="Supported platforms">
+    <div
+      className="flex min-w-0 flex-1 flex-wrap items-center gap-2"
+      aria-label="Supported platforms"
+    >
       {platforms.map(({ platform }) => {
         const Icon = iconMap[platform.slug];
         if (!Icon) return null;
