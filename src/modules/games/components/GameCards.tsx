@@ -8,6 +8,7 @@ import getCroppedImageUrl, {
 } from "../../../shared/services/image-url";
 import GameCardSkeleton from "./GameCardSkeleton";
 import type { GameQuery } from "../pages/HomePage";
+import Emoji from "./Emoji";
 
 interface Props {
   gameQuery: GameQuery;
@@ -45,13 +46,13 @@ const GameCards = ({ gameQuery }: Props) => {
             radius="md"
             fit="cover"
           />
-          <h2 className="mt-2 text-lg font-bold">{game.name}</h2>
-          <p>Rating: {game.rating}</p>
-          <p>Genres: {game.genres.map((genre) => genre.name).join(", ")}</p>
-          <div className="flex justify-between">
+
+          <div className="flex justify-between pt-5">
             <PlatformIconList platforms={game.parent_platforms} />
             <CriticScore score={game.metacritic}></CriticScore>
           </div>
+          <h2 className="mt-2 text-lg font-bold">{game.name}</h2>
+          <Emoji rating={game.rating_top}></Emoji>
         </div>
       ))}
     </div>

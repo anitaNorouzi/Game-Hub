@@ -36,7 +36,7 @@ const PlatformIconList = ({ platforms }: Props) => {
 
         return (
           <span key={platform.id} title={platform.name}>
-            <Icon aria-label={platform.name} size={12} color="gray" />
+            <Icon aria-label={platform.name} size={16} color="gray" />
           </span>
         );
       })}
