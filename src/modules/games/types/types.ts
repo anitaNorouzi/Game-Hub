@@ -3,10 +3,6 @@ export interface GameGenre {
   name: string;
   image_background?: string | null;
 }
-// export interface FetchGenreResponse {
-//   count: number;
-//   results: GameGenre[];
-// }
 
 export interface FetchResponse<T> {
   count: number;

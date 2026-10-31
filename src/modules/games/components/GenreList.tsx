@@ -23,7 +23,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
 
   return (
     <ul>
-      {data?.results.map((genre) => (
+      {data?.map((genre) => (
         <li
           data-selected={selectedGenre?.id === genre.id}
           role="button"
