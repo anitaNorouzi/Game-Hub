@@ -1,4 +1,4 @@
-import useGenres from "../hooks/ReactQuery/useGenres";
+import useGenres from "../hooks/queries/useGenres";
 import { Image } from "@mantine/core";
 import getCroppedImageUrl, {
   noImage,

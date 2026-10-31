@@ -1,6 +1,6 @@
 import { Box, Button, Menu } from "@mantine/core";
 import { RiArrowDownWideLine } from "react-icons/ri";
-import usePlatforms from "../hooks/ReactQuery/usePlatforms";
+import usePlatforms from "../hooks/queries/usePlatforms";
 import type { Platform } from "../types/types";
 
 interface Props {

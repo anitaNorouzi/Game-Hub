@@ -1,4 +1,4 @@
-import { useGames } from "../hooks/ReactQuery/useGames";
+import { useGames } from "../hooks/queries/useGames";
 import type { Game } from "../types/types";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
