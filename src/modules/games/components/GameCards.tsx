@@ -18,7 +18,7 @@ const GameCards = ({ gameQuery }: Props) => {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+      <>
         {/* Render 12 placeholder cards while the games are loading.
          because the API request asks for 12 games (page_size: 12)
          You can change the number if you change the page size.
@@ -27,14 +27,15 @@ const GameCards = ({ gameQuery }: Props) => {
         {Array.from({ length: 12 }, (_, index) => (
           <GameCardSkeleton key={index} />
         ))}
-      </div>
+      </>
     );
   }
-  if (isError) return <p>Failed to load games.</p>;
+  if (isError)
+    return <p className="col-span-full">Failed to load games.</p>;
   if (!data) return null;
 
   return (
-    <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    <>
       {data.results.map((game: Game) => (
         <div key={game.id} className="rounded-lg border p-4">
           <Image
@@ -55,7 +56,7 @@ const GameCards = ({ gameQuery }: Props) => {
           <Emoji rating={game.rating_top}></Emoji>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

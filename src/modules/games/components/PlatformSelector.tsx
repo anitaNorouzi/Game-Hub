@@ -10,18 +10,18 @@ interface Props {
 const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
-  if (error) return <p>Could not load platforms.</p>;
-
   return (
     <Box
       component="span"
       px={24}
-      pb={{ base: 10, md: 0 }}
       style={{ display: "inline-flex" }}
     >
       <Menu radius={5} width={200} position="bottom-start">
         <Menu.Target>
-          <Button radius={4} rightSection={<RiArrowDownWideLine />}>
+          <Button
+            radius={4}
+            rightSection={<RiArrowDownWideLine />}
+          >
             {selectedPlatform?.name || "Platforms"}
           </Button>
         </Menu.Target>
@@ -35,6 +35,7 @@ const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
               {platform.name}
             </Menu.Item>
           ))}
+          {error && <Menu.Item disabled>Could not load platforms</Menu.Item>}
         </Menu.Dropdown>
       </Menu>
     </Box>

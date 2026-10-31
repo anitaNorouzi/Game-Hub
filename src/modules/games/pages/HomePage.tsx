@@ -6,6 +6,7 @@ import type { GameGenre, Platform } from "../types/types";
 import PlatformSelector from "../components/PlatformSelector";
 import SortSelector from "../components/SortSelector";
 import GameHeading from "../components/GameHeading";
+import GameGrid from "../components/GameGrid";
 
 export interface GameQuery {
   genre: GameGenre | null;
@@ -47,19 +48,23 @@ const HomePage = () => {
         </aside>
         <main className="main-content">
           <GameHeading gameQuery={gameQuery}></GameHeading>
-          <PlatformSelector
-            selectedPlatform={gameQuery.platform}
-            onSelectPlatform={(platform) =>
-              setGameQuery((query) => ({ ...query, platform }))
-            }
-          />
-          <SortSelector
-            sortOrder={gameQuery.sortOrder}
-            onSelectSortOrder={(sortOrder) =>
-              setGameQuery({ ...gameQuery, sortOrder })
-            }
-          ></SortSelector>
-          <GameCards gameQuery={gameQuery} />
+          <div className="flex flex-col items-start gap-y-2 min-[700px]:flex-row min-[700px]:items-center">
+            <PlatformSelector
+              selectedPlatform={gameQuery.platform}
+              onSelectPlatform={(platform) =>
+                setGameQuery((query) => ({ ...query, platform }))
+              }
+            />
+            <SortSelector
+              sortOrder={gameQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
+              }
+            />
+          </div>
+          <GameGrid>
+            <GameCards gameQuery={gameQuery} />
+          </GameGrid>
         </main>
       </section>
     </div>

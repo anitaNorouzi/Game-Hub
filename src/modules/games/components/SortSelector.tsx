@@ -22,7 +22,7 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
     (order) => order.value === sortOrder,
   );
   return (
-    <Box px={{ base: 24, lg: 0 }} style={{ display: "inline-flex" }}>
+    <Box className="pl-6 min-[700px]:pl-0" style={{ display: "inline-flex" }}>
       <Menu radius={5} width={200} position="bottom-start">
         <Menu.Target>
           <Button radius={4} rightSection={<RiArrowDownWideLine />}>
