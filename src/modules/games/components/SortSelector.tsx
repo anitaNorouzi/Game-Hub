@@ -1,4 +1,4 @@
-import { Button, Menu } from "@mantine/core";
+import { Button, Menu, Box } from "@mantine/core";
 import { RiArrowDownWideLine } from "react-icons/ri";
 //import { useGames } from "../hooks/ReactQuery/useGames";
 
@@ -22,25 +22,27 @@ const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
     (order) => order.value === sortOrder,
   );
   return (
-    <Menu radius={5} width={200} position="bottom-start">
-      <Menu.Target>
-        <Button radius={4} rightSection={<RiArrowDownWideLine />}>
-          Order by: {currentSortOrder?.label || "Relevance"}
-        </Button>
-      </Menu.Target>
+    <Box px={{ base: 24, lg: 0 }} style={{ display: "inline-flex" }}>
+      <Menu radius={5} width={200} position="bottom-start">
+        <Menu.Target>
+          <Button radius={4} rightSection={<RiArrowDownWideLine />}>
+            Order by: {currentSortOrder?.label || "Relevance"}
+          </Button>
+        </Menu.Target>
 
-      <Menu.Dropdown>
-        {sortOrders.map((order) => (
-          <Menu.Item
-            onClick={() => onSelectSortOrder(order.value)}
-            key={order.value}
-            value={order.value}
-          >
-            {order.label}
-          </Menu.Item>
-        ))}
-      </Menu.Dropdown>
-    </Menu>
+        <Menu.Dropdown>
+          {sortOrders.map((order) => (
+            <Menu.Item
+              onClick={() => onSelectSortOrder(order.value)}
+              key={order.value}
+              value={order.value}
+            >
+              {order.label}
+            </Menu.Item>
+          ))}
+        </Menu.Dropdown>
+      </Menu>
+    </Box>
   );
 };
 

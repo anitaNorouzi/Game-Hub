@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import type { GameGenre, Platform } from "../types/types";
 import PlatformSelector from "../components/PlatformSelector";
 import SortSelector from "../components/SortSelector";
+import GameHeading from "../components/GameHeading";
 
 export interface GameQuery {
   genre: GameGenre | null;
@@ -45,6 +46,7 @@ const HomePage = () => {
           />
         </aside>
         <main className="main-content">
+          <GameHeading gameQuery={gameQuery}></GameHeading>
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) =>
