@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Switch } from "@mantine/core";
 import type { Theme } from "../../../shared/types/theme";
 import { useLocalStorage } from "@mantine/hooks";
-import { FiSearch } from "react-icons/fi";
 import SearchInput from "./SearchInput";
 interface Props {
   onSearch: (searchText: string) => void;
@@ -29,10 +28,14 @@ const Navbar = ({ onSearch }: Props) => {
       <h1 className="text-2xl font-bold">RAWG</h1>
       <div
         aria-label="Search bar"
-        className="flex flex-row items-center gap-3 px-3.5 dark:bg-white/10 dark:text-white placeholder:text-neutral-600 dark:placeholder:text-neutral-400 w-[80%] h-8 rounded-4xl text-xs"
+        className="flex h-8 w-[80%] items-center rounded-4xl bg-neutral-100 px-3.5 text-xs dark:bg-neutral-800 dark:text-white"
+        style={
+          {
+            "--search-background": "var(--color-neutral-100)",
+          } as React.CSSProperties
+        }
       >
-        <FiSearch />
-        <SearchInput onSearch={onSearch}></SearchInput>
+        <SearchInput onSearch={onSearch} />
       </div>
 
       <Switch

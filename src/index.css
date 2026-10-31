@@ -2,6 +2,23 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+#game-search:-webkit-autofill,
+#game-search:-webkit-autofill:hover,
+#game-search:-webkit-autofill:focus,
+#game-search:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--search-background) inset;
+  -webkit-text-fill-color: currentColor;
+  transition: background-color 99999s ease-out;
+}
+
+.dark #game-search:-webkit-autofill,
+.dark #game-search:-webkit-autofill:hover,
+.dark #game-search:-webkit-autofill:focus,
+.dark #game-search:-webkit-autofill:active {
+  --search-background: var(--color-neutral-800);
+  -webkit-text-fill-color: white;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
